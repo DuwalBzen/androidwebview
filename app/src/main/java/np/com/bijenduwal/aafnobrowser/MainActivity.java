@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -33,8 +34,7 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FrameLayout frame_presearch_layout_id;
-private EditText baseUrl,redirectUrl,generatedResult;
-private Button generateBtn,generate_id;
+    private ViewPager main_viewPager_id;
 
 
     @Override
@@ -44,17 +44,12 @@ private Button generateBtn,generate_id;
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        baseUrl=findViewById(R.id.base_url_id);
-        redirectUrl=findViewById(R.id.redirect_url_id);
-        generateBtn=findViewById(R.id.generate_redirect_url_id);
-        generate_id=findViewById(R.id.generate_id);
-        generatedResult=findViewById(R.id.generate_url_id);
-
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         frame_presearch_layout_id = findViewById(R.id.main_frame_layout_id);
+        main_viewPager_id = findViewById(R.id.main_viewPager_id);
+        main_viewPager_id.setAdapter(new MyviewpagerAdapter(getSupportFragmentManager()));
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -64,71 +59,6 @@ private Button generateBtn,generate_id;
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        generateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InetAddress urlAddress = null;
-                String ipAddr = "";
-                try {
-
-                    urlAddress = InetAddress.getByName(redirectUrl.getText().toString());
-
-                    byte[] addr = urlAddress.getAddress();
-
-                    // Convert to dot representation
-
-                    for (int i = 0; i < addr.length; i++) {
-                        if (i > 0) {
-                            ipAddr += ".";
-                        }
-                        ipAddr += addr[i] & 0xFF;
-                    }
-
-
-
-                }
-                catch (UnknownHostException e) {
-                    System.out.println("Host not found: " + e.getMessage());
-                }
-
-
-
-                InetAddress address = null;
-                try {
-                     address = InetAddress.getByName(redirectUrl.getText().toString());
-                }catch (UnknownHostException e) {
-                    e.printStackTrace();
-                }
-                String host=String.valueOf(address.getHostAddress());
-
-
-
-
-                String[] ipAddressInArray = host.split("\\.");
-
-                long result = 0;
-                for (int i = 0; i < ipAddressInArray.length; i++) {
-
-                    int power = 3 - i;
-                    int ip = Integer.parseInt(ipAddressInArray[i]);
-                    result += ip * Math.pow(256, power);
-
-                }
-                generatedResult.setText(baseUrl.getText().toString() + "@" + ipAddr);
-
-
-            }
-        });
-
-        generate_id.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent httpIntent = new Intent(Intent.ACTION_VIEW);
-                httpIntent.setData(Uri.parse(generatedResult.getText().toString()));
-
-                startActivity(httpIntent);
-            }
-        });
     }
 
     @Override
