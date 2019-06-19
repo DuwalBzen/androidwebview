@@ -1,7 +1,12 @@
 package np.com.bijenduwal.aafnobrowser;
 
 
+import android.app.DownloadManager;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -12,8 +17,16 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
+import android.webkit.DownloadListener;
+import android.webkit.URLUtil;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import static android.content.Context.DOWNLOAD_SERVICE;
+import static android.support.v4.content.ContextCompat.getSystemService;
 
 
 /**
@@ -21,6 +34,7 @@ import android.webkit.WebViewClient;
  */
 public class GoogleFragment extends Fragment {
 
+    private ProgressBar google_progressBar;
     private String currentUrl;
     private WebView googleWebview;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -48,6 +62,7 @@ public class GoogleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_google, container, false);
         currentUrl = "http://google.com";
+        google_progressBar = view.findViewById(R.id.google_progressBar);
         googleWebview = view.findViewById(R.id.google_webview_id);
         swipeRefreshLayout = view.findViewById(R.id.google_swipup_refresh_ID);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -56,7 +71,6 @@ public class GoogleFragment extends Fragment {
                 loadWebPage();
             }
         });
-
         loadWebPage();
         return view;
     }
@@ -68,6 +82,8 @@ public class GoogleFragment extends Fragment {
         googleWebview.getSettings().setBuiltInZoomControls(true);
         googleWebview.getSettings().setDisplayZoomControls(false);
         googleWebview.loadUrl(currentUrl);
+
+        google_progressBar.setVisibility(View.VISIBLE);
 
         googleWebview.setOnKeyListener(new View.OnKeyListener() {
 
@@ -89,6 +105,7 @@ public class GoogleFragment extends Fragment {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 currentUrl = url;
+                google_progressBar.setVisibility(View.VISIBLE);
                 return super.shouldOverrideUrlLoading(view, url);
             }
 
@@ -101,6 +118,7 @@ public class GoogleFragment extends Fragment {
 
             @Override
             public void onPageFinished(WebView view, String url) {
+                google_progressBar.setVisibility(View.INVISIBLE);
                 super.onPageFinished(view, url);
                 swipeRefreshLayout.setRefreshing(false);
             }

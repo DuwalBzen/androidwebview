@@ -5,16 +5,31 @@
     android:layout_height="match_parent"
     tools:context=".GoogleFragment">
 
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/google_swipup_refresh_ID"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/google_progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            tools:visibility="invisible" />
+
         <WebView
             android:id="@+id/google_webview_id"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></WebView>
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/google_progressBar"></WebView>
 
+        </RelativeLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>
