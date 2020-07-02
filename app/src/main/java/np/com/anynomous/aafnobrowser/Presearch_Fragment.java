@@ -1,4 +1,4 @@
-package np.com.bijenduwal.aafnobrowser;
+package np.com.anynomous.aafnobrowser;
 
 
 import android.os.Bundle;
@@ -19,25 +19,24 @@ import android.webkit.WebViewClient;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Yandex_Fragment extends Fragment {
+public class Presearch_Fragment extends Fragment {
 
     private String currentUrl;
-    private WebView yandexWebview;
+    private WebView presearchWebview;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private Handler handler = new Handler() {
+    private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message message) {
             switch (message.what) {
-                case 1: {
+                case 1:{
                     webViewGoBack();
-                }
-                break;
+                }break;
             }
         }
     };
 
-    public Yandex_Fragment() {
+    public Presearch_Fragment() {
         // Required empty public constructor
     }
 
@@ -46,10 +45,10 @@ public class Yandex_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_yandex_, container, false);
-        currentUrl = "http://yandex.com";
-        yandexWebview = view.findViewById(R.id.yandex_webview_id);
-        swipeRefreshLayout = view.findViewById(R.id.yandex_swipup_refresh_ID);
+        View view=inflater.inflate(R.layout.fragment_presearch_, container, false);
+        currentUrl="http://presearch.org";
+        presearchWebview = view.findViewById(R.id.presearch_webview_id);
+        swipeRefreshLayout = view.findViewById(R.id.presearch_swipup_refresh_ID);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -58,23 +57,23 @@ public class Yandex_Fragment extends Fragment {
         });
 
         loadWebPage();
-        return view;
+        return  view;
     }
 
     private void loadWebPage() {
 
-        yandexWebview.getSettings().setJavaScriptEnabled(true);
+        presearchWebview.getSettings().setJavaScriptEnabled(true);
         swipeRefreshLayout.setRefreshing(true);
-        yandexWebview.getSettings().setBuiltInZoomControls(true);
-        yandexWebview.getSettings().setDisplayZoomControls(false);
-        yandexWebview.loadUrl(currentUrl);
+        presearchWebview.getSettings().setBuiltInZoomControls(true);
+        presearchWebview.getSettings().setDisplayZoomControls(false);
+        presearchWebview.loadUrl(currentUrl);
 
-        yandexWebview.setOnKeyListener(new View.OnKeyListener() {
+        presearchWebview.setOnKeyListener(new View.OnKeyListener(){
 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK
                         && event.getAction() == MotionEvent.ACTION_UP
-                        && yandexWebview.canGoBack()) {
+                        && presearchWebview.canGoBack()) {
                     handler.sendEmptyMessage(1);
                     return true;
                 }
@@ -84,7 +83,7 @@ public class Yandex_Fragment extends Fragment {
 
         });
 
-        yandexWebview.setWebViewClient(new WebViewClient() {
+        presearchWebview.setWebViewClient(new WebViewClient() {
 
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -111,8 +110,9 @@ public class Yandex_Fragment extends Fragment {
 
     }
 
-
-    private void webViewGoBack() {
-        yandexWebview.goBack();
+    private void webViewGoBack(){
+        presearchWebview.goBack();
     }
+
+
 }

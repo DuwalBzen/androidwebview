@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="55dp"
-    tools:context=".Yandex_Fragment">
+    tools:context=".Duckduckgo_Fragment">
 
 
 
@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <WebView
-            android:id="@+id/yandex_webview_id"
+            android:id="@+id/duckduckgo_webview_id"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></WebView>
     </android.support.v4.widget.SwipeRefreshLayout>

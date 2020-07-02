@@ -1,4 +1,4 @@
-package np.com.bijenduwal.aafnobrowser;
+package np.com.anynomous.aafnobrowser;
 
 
 import android.os.Bundle;
@@ -48,7 +48,7 @@ public class ZenBlogFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_zen_blog, container, false);
 
-        currentUrl = "http://bijenduwal.com.np";
+        currentUrl = "https://hamrobazaar.com/";
         zenBlogWebview = view.findViewById(R.id.zenBlog_webview_id);
         swipeRefreshLayout = view.findViewById(R.id.zenBlog_swipup_refresh_ID);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

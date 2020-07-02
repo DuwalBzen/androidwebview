@@ -1,4 +1,4 @@
-package np.com.bijenduwal.aafnobrowser;
+package np.com.anynomous.aafnobrowser;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package np.com.bijenduwal.aafnobrowser;
+package np.com.anynomous.aafnobrowser;
 
 
 import android.os.Bundle;
@@ -19,24 +19,25 @@ import android.webkit.WebViewClient;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Piratebay_Fragment extends Fragment {
+public class Duckduckgo_Fragment extends Fragment {
 
     private String currentUrl;
-    private WebView piratebayWebview;
+    private WebView yandexWebview;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message message) {
             switch (message.what) {
-                case 1:{
+                case 1: {
                     webViewGoBack();
-                }break;
+                }
+                break;
             }
         }
     };
 
-    public Piratebay_Fragment() {
+    public Duckduckgo_Fragment() {
         // Required empty public constructor
     }
 
@@ -45,11 +46,10 @@ public class Piratebay_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View view= inflater.inflate(R.layout.fragment_piratebay_, container, false);
-        currentUrl="http://m.thepiratebay.org/";
-        piratebayWebview = view.findViewById(R.id.piratebay_webview_id);
-        swipeRefreshLayout = view.findViewById(R.id.piratebay_swipup_refresh_ID);
+        View view = inflater.inflate(R.layout.fragment_yandex_, container, false);
+        currentUrl = "https://duckduckgo.com/";
+        yandexWebview = view.findViewById(R.id.duckduckgo_webview_id);
+        swipeRefreshLayout = view.findViewById(R.id.yandex_swipup_refresh_ID);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -58,23 +58,23 @@ public class Piratebay_Fragment extends Fragment {
         });
 
         loadWebPage();
-        return  view;
+        return view;
     }
-
 
     private void loadWebPage() {
 
-        piratebayWebview.getSettings().setJavaScriptEnabled(true);
+        yandexWebview.getSettings().setJavaScriptEnabled(true);
         swipeRefreshLayout.setRefreshing(true);
-        piratebayWebview.getSettings().setBuiltInZoomControls(true);
-        piratebayWebview.getSettings().setDisplayZoomControls(false);
-        piratebayWebview.loadUrl(currentUrl);
-        piratebayWebview.setOnKeyListener(new View.OnKeyListener(){
+        yandexWebview.getSettings().setBuiltInZoomControls(true);
+        yandexWebview.getSettings().setDisplayZoomControls(false);
+        yandexWebview.loadUrl(currentUrl);
+
+        yandexWebview.setOnKeyListener(new View.OnKeyListener() {
 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK
                         && event.getAction() == MotionEvent.ACTION_UP
-                        && piratebayWebview.canGoBack()) {
+                        && yandexWebview.canGoBack()) {
                     handler.sendEmptyMessage(1);
                     return true;
                 }
@@ -84,9 +84,7 @@ public class Piratebay_Fragment extends Fragment {
 
         });
 
-
-
-        piratebayWebview.setWebViewClient(new WebViewClient() {
+        yandexWebview.setWebViewClient(new WebViewClient() {
 
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -114,11 +112,7 @@ public class Piratebay_Fragment extends Fragment {
     }
 
 
-    private void webViewGoBack(){
-        piratebayWebview.goBack();
+    private void webViewGoBack() {
+        yandexWebview.goBack();
     }
-
-
-    }
-
-
+}

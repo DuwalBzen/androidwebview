@@ -1,4 +1,4 @@
-package np.com.bijenduwal.aafnobrowser;
+package np.com.anynomous.aafnobrowser;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

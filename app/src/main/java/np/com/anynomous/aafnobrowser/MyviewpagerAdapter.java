@@ -1,9 +1,8 @@
-package np.com.bijenduwal.aafnobrowser;
+package np.com.anynomous.aafnobrowser;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.widget.Switch;
 
 public class MyviewpagerAdapter extends FragmentPagerAdapter {
     public MyviewpagerAdapter(FragmentManager fm) {
@@ -15,7 +14,7 @@ public class MyviewpagerAdapter extends FragmentPagerAdapter {
         switch(i){
             case 0: return new GoogleFragment();
             case 1: return new Presearch_Fragment();
-            case 2: return new Yandex_Fragment();
+            case 2: return new Duckduckgo_Fragment();
             case 3: return new Piratebay_Fragment();
             case 4: return new ZenBlogFragment();
             default:

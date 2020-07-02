@@ -1,17 +1,10 @@
-package np.com.bijenduwal.aafnobrowser;
+package np.com.anynomous.aafnobrowser;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentManager;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
@@ -20,16 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,7 +65,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.yandex_id) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().addToBackStack(null);
-            fragmentTransaction.replace(R.id.main_frame_layout_id, new Yandex_Fragment());
+            fragmentTransaction.replace(R.id.main_frame_layout_id, new Duckduckgo_Fragment());
             fragmentTransaction.commit();
 
         } else if (id == R.id.presearch_id) {
@@ -90,10 +74,14 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.piratebay_id) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().addToBackStack("pirate");
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().addToBackStack(null);
             fragmentTransaction.replace(R.id.main_frame_layout_id, new Piratebay_Fragment());
             fragmentTransaction.commit();
         } else if (id == R.id.Zenblog_id) {
+
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction().addToBackStack(null);
+            fragmentTransaction.replace(R.id.main_frame_layout_id, new ZenBlogFragment());
+            fragmentTransaction.commit();
 
         } else if (id == R.id.nav_share) {
 

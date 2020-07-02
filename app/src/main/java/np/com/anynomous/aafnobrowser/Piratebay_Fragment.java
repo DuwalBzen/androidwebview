@@ -1,4 +1,4 @@
-package np.com.bijenduwal.aafnobrowser;
+package np.com.anynomous.aafnobrowser;
 
 
 import android.os.Bundle;
@@ -19,10 +19,10 @@ import android.webkit.WebViewClient;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Presearch_Fragment extends Fragment {
+public class Piratebay_Fragment extends Fragment {
 
     private String currentUrl;
-    private WebView presearchWebview;
+    private WebView piratebayWebview;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     private Handler handler = new Handler(){
@@ -36,7 +36,7 @@ public class Presearch_Fragment extends Fragment {
         }
     };
 
-    public Presearch_Fragment() {
+    public Piratebay_Fragment() {
         // Required empty public constructor
     }
 
@@ -45,10 +45,11 @@ public class Presearch_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_presearch_, container, false);
-        currentUrl="http://presearch.org";
-        presearchWebview = view.findViewById(R.id.presearch_webview_id);
-        swipeRefreshLayout = view.findViewById(R.id.presearch_swipup_refresh_ID);
+
+        View view= inflater.inflate(R.layout.fragment_piratebay_, container, false);
+        currentUrl="http://m.thepiratebay.org/";
+        piratebayWebview = view.findViewById(R.id.piratebay_webview_id);
+        swipeRefreshLayout = view.findViewById(R.id.piratebay_swipup_refresh_ID);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -60,20 +61,20 @@ public class Presearch_Fragment extends Fragment {
         return  view;
     }
 
+
     private void loadWebPage() {
 
-        presearchWebview.getSettings().setJavaScriptEnabled(true);
+        piratebayWebview.getSettings().setJavaScriptEnabled(true);
         swipeRefreshLayout.setRefreshing(true);
-        presearchWebview.getSettings().setBuiltInZoomControls(true);
-        presearchWebview.getSettings().setDisplayZoomControls(false);
-        presearchWebview.loadUrl(currentUrl);
-
-        presearchWebview.setOnKeyListener(new View.OnKeyListener(){
+        piratebayWebview.getSettings().setBuiltInZoomControls(true);
+        piratebayWebview.getSettings().setDisplayZoomControls(false);
+        piratebayWebview.loadUrl(currentUrl);
+        piratebayWebview.setOnKeyListener(new View.OnKeyListener(){
 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK
                         && event.getAction() == MotionEvent.ACTION_UP
-                        && presearchWebview.canGoBack()) {
+                        && piratebayWebview.canGoBack()) {
                     handler.sendEmptyMessage(1);
                     return true;
                 }
@@ -83,7 +84,9 @@ public class Presearch_Fragment extends Fragment {
 
         });
 
-        presearchWebview.setWebViewClient(new WebViewClient() {
+
+
+        piratebayWebview.setWebViewClient(new WebViewClient() {
 
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -110,9 +113,12 @@ public class Presearch_Fragment extends Fragment {
 
     }
 
+
     private void webViewGoBack(){
-        presearchWebview.goBack();
+        piratebayWebview.goBack();
     }
 
 
-}
+    }
+
+
